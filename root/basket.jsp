@@ -1,5 +1,6 @@
+<%@page import="com.coverity.security.Escape"%>
 <%@page import="java.net.URL"%>
-<%@ page import="java.servlet.http.*" %>
+<%@ page import="javax.servlet.http.*" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.math.*" %>
 <%@ page import="java.text.*" %>

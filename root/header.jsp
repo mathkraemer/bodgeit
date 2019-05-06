@@ -1,6 +1,6 @@
 <%@ page import="java.math.*" %>
-<%@ page import="java.servlet.*" %>
-<%@ page import="java.servlet.http.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.http.*" %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
 <html>
