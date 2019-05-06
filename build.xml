@@ -11,34 +11,33 @@
 		<fileset dir="lib">
 			<include name="*.jar" />
 		</fileset>
-		<fileset dir="build/WEB-INF/classes">
-			<include name="*.class" />
-		</fileset>
-		<pathelement location="build/WEB-INF/classes"/>
 	</path>
 
 	<target name="hack">
-		<echo message="file=$(ant.file) home=${ant.home} bodge=${bodgeit.home}"/>
+		<echo message="ant.home=${ant.home} build.xml=${ant.file} bodgeit.home=${bodgeit.home}"/>
 	</target>
 		
+	<target name="clean">
+		<delete dir="build" />
+	</target>
 
 	<!-- Compile all of the source code -->
 	<target name="compile">
-		<!-- Compile the java code -->
-		<javac target="1.5" destdir="build/WEB-INF/classes" srcdir="src" classpathref="java.classpath" />
+	    <mkdir dir="build/app/WEB-INF/classes" />
+		<javac target="1.8" destdir="build/app/WEB-INF/classes" srcdir="src" classpathref="java.classpath" includeAntRuntime="false"/>
 	</target>
 
-	<target name="build" depends="compile">
-		<copy toDir="build"><fileset dir="root" includes="**/*"/></copy>
-
-		<delete file="build/bodgeit.war"/>
+	<target name="war" depends="compile">
+		<copy toDir="build/app">
+			<fileset dir="root" includes="**/*"/>
+		</copy>
 		
-		<war destfile="build/bodgeit.war" webxml="root/WEB-INF/web.xml">
-			<fileset dir="build"/>
+		<war destfile="build/bodgeit.war">
+			<fileset dir="build/app"/>
 		</war>
 	</target>
 
-	<target name="deploy" depends="build">
+	<target name="deploy" depends="war">
 		<delete dir="${deploy.dir}/bodgeit"/>
 		<copy file="build/bodgeit.war" tofile="${deploy.dir}/bodgeit.war"/>
 	</target>
