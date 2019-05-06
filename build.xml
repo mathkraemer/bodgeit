@@ -1,7 +1,7 @@
 <project basedir="." default="compile">
 
 	<!-- This file contains all of the environment specific configuration, change it for your setup -->
-    <property file="local.properties"/>
+    <!--property file="local.properties"/-->
 	<dirname file="${ant.file}" property="bodgeit.home"/>
 
 	<path id="java.classpath">
@@ -13,7 +13,12 @@
 		</fileset>
 	</path>
 
-	<target name="hack">
+	<target name="setup">
+	   <copy file="local.properties.template" tofile="local.properties" overwrite="false"/>
+	   <property file="local.properties"/>
+	</target>
+
+	<target name="hack" depends="setup">
 		<echo message="ant.home=${ant.home} build.xml=${ant.file} bodgeit.home=${bodgeit.home}"/>
 	</target>
 		
@@ -22,7 +27,7 @@
 	</target>
 
 	<!-- Compile all of the source code -->
-	<target name="compile">
+	<target name="compile" depends="setup">
 	    <mkdir dir="build/app/WEB-INF/classes" />
 		<javac target="1.8" destdir="build/app/WEB-INF/classes" srcdir="src" classpathref="java.classpath" includeAntRuntime="false"/>
 	</target>
@@ -38,8 +43,7 @@
 	</target>
 
 	<target name="deploy" depends="war">
-		<delete dir="${deploy.dir}/bodgeit"/>
-		<copy file="build/bodgeit.war" tofile="${deploy.dir}/bodgeit.war"/>
+		<copy file="build/bodgeit.war" tofile="${deploy.dir}/bodgeit.war" overwrite="true"/>
 	</target>
 
 	<target name="deploy-jsps">
