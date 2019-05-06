@@ -34,7 +34,7 @@ import com.thoughtworks.selenium.SeleneseTestCase;
 public class FunctionalTest extends SeleneseTestCase {
 
 	private WebDriver driver;
-	private String site = "http://localhost:8080/bodgeit/";
+	private String site = "http://localhost:8888/bodgeit/";
 	
 	public void setUp() throws Exception {
 		String target = System.getProperty("zap.targetApp");
