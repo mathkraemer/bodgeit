@@ -25,7 +25,7 @@ public class BodgeitSuite {
         //System.setProperty("webdriver.firefox.driver",  "p:\\path\\to\\runtime\\geckodriver.exe");
         System.out.println("Loading Driver...");
 		driver= new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         System.out.println("Done...");
         driver.get(site);
         BodgeitTestBase.sleep(10000);
