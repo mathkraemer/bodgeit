@@ -28,7 +28,7 @@ public class BodgeitSuite {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         System.out.println("Done...");
         driver.get(site);
-        BodgeitTestBase.sleep(10000);
+        BodgeitTestBase.sleep(15000);
         System.out.println("Webapp loaded...");
     }
 
