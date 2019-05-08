@@ -2,6 +2,8 @@ package com.thebodgeitstore.selenium;
 
 import java.util.concurrent.TimeUnit;
 
+import com.thebodgeitstore.selenium.BodgeitTestBase;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -13,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 @RunWith(Suite.class)
-@SuiteClasses({MenuTests.class})
+@SuiteClasses({MenuTests.class, SearchTests.class, RegisterLoginTests.class, BasketTests.class})
 public class BodgeitSuite {
 
     public static WebDriver driver;
@@ -25,6 +27,8 @@ public class BodgeitSuite {
 		driver= new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         System.out.println("Done...");
+        driver.get(site);
+        BodgeitTestBase.sleep(10000);
     }
 
 	@AfterClass public static void BrowserClose(){ 

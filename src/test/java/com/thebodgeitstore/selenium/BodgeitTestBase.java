@@ -4,6 +4,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+
+import static org.junit.Assert.*;
 
 public class BodgeitTestBase {
     
@@ -13,14 +17,24 @@ public class BodgeitTestBase {
 	@BeforeClass
 	public static void setup(){
         driver = BodgeitSuite.driver;
-        site = BodgeitSuite.site;
+		site = BodgeitSuite.site;
 	}
 
-	void sleep(int ms) {
+	static void sleep(int ms) {
 		try {Thread.sleep(ms);} catch (InterruptedException e) {}
 	}
 
-	void sleep(){
-		sleep(300);
+	static void sleep(){
+		sleep(400);
+	}
+
+	void checkMenu(String linkText, String page) {
+		driver.get(site + page);
+		sleep();
+		WebElement link = driver.findElement(By.linkText(linkText));
+		link.click();
+		sleep();
+
+		assertEquals(site + page, driver.getCurrentUrl());
 	}
 }

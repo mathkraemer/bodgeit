@@ -24,16 +24,6 @@ import org.openqa.selenium.WebElement;
  */
 
 public class MenuTests extends BodgeitTestBase {
-	
-	public void checkMenu(String linkText, String page) {
-		driver.get(site + page);
-		sleep();
-		WebElement link = driver.findElement(By.linkText(linkText));
-		link.click();
-		sleep();
-
-		assertEquals(site + page, driver.getCurrentUrl());
-	}
 
 	@Test 
 	public void checkMenuHome(){
