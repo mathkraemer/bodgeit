@@ -9,7 +9,7 @@
 			<include name="*.jar" />
 		</fileset>
 		<!-- Provides javax.servlet api -->
-		<fileset dir="libruntime">
+		<fileset dir="runtime">
 			<include name="jetty-runner-*.jar"/>
 		</fileset>
 	</path>
@@ -26,29 +26,39 @@
 	</target>
 
 	<target name="hack" depends="setup">
-		<echo message="ant.home=${ant.home} build.xml=${ant.file} bodgeit.home=${bodgeit.home}"/>
+		<echo message="ant.home=${ant.home} build.xml=${ant.file} bodgeit.home=${bodgeit.home} basedir=${basedir}"/>
 	</target>
 		
 	<target name="clean">
 		<delete dir="build" includeemptydirs="true" />
 	</target>
 
-	<!-- Compile all of the source code -->
-	<target name="compile" depends="setup">
+	<!-- Compile all of the application source code -->
+	<target name="app.compile" depends="setup">
 	    <mkdir dir="build/app/WEB-INF/classes" />
 		<javac target="1.8" destdir="build/app/WEB-INF/classes"
 		       srcdir="src/main/java"
 			   includeAntRuntime="false" debug="true">
 			<classpath refid="java.app.classpath"/>
+		</javac>
+	</target>
+
+	<!-- Compile all of the test source code -->
+	<target name="test.compile" depends="app.compile">
+	    <mkdir dir="build/test/classes" />
+		<javac target="1.8" destdir="build/test/classes"
+		       srcdir="src/test/java"
+			   includeAntRuntime="false" debug="true">
 			<classpath refid="java.test.classpath"/>
 		</javac>
 	</target>
 
-	<target name="war" depends="compile">
+
+
+	<target name="war" depends="app.compile">
 		<copy toDir="build/app">
 			<fileset dir="src/main/webapp" includes="**/*"/>
 		</copy>
-		
 		<war destfile="build/bodgeit.war">
 			<fileset dir="build/app"/>
 		</war>
@@ -68,24 +78,18 @@
 		</copy>
 	</target>
 
-	<target name="test">
-	    <mkdir dir="build/tests/allure-results" />
+	<target name="test" depends="war, test.compile">
+	    <mkdir dir="build/allure-results" />
         <!-- Run the JUnit tests -->
         <junit printsummary="yes">
-            <classpath>
-        		<fileset dir="root/WEB-INF/lib">
-        			<include name="*.jar" />
-        		</fileset>
-        		<fileset dir="lib">
-        			<include name="*.jar" />
-        		</fileset>
-        		<pathelement location="build/app/WEB-INF/classes"/>
-            </classpath>
+        	<classpath refid="java.test.classpath"/>
+			<classpath location="build/test/classes"/>
+			<jvmarg value="-Dwebdriver.gecko.driver=${basedir}/runtime/geckodriver.exe"/>
             <formatter type="plain"/>
             <formatter type="xml"/>
-            <batchtest fork="yes" todir="build/tests/allure-results">
-                <fileset dir="src">
-                    <include name="**/Functional2Test.java"/>
+            <batchtest fork="yes" todir="build/allure-results">
+                <fileset dir="build/test/classes">
+                    <include name="**/FunctionalTest.class"/>
                 </fileset>
             </batchtest>
 		</junit>
