@@ -17,6 +17,7 @@
 	<path id="java.test.classpath">
 		<fileset dir="libtest">
 			<include name="*.jar" />
+			<exclude name="*zap-api*.jar"/>
 		</fileset>
 	</path>
 
@@ -89,7 +90,7 @@
             <formatter type="xml"/>
             <batchtest fork="yes" todir="build/allure-results">
                 <fileset dir="build/test/classes">
-                    <include name="**/FunctionalTest.class"/>
+                    <include name="**/BodgeitSuite.class"/>
                 </fileset>
             </batchtest>
 		</junit>

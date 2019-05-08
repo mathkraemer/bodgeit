@@ -1,23 +1,4 @@
-/*
- * The BodgeIt Store and its related class files.
- *
- * The BodgeIt Store is a vulnerable web application suitable for pen testing
- *
- * Copyright 2011 psiinon@gmail.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.thebodgeitstore.selenium.tests;
+package com.thebodgeitstore.selenium;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 
@@ -25,72 +6,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.AfterClass; 
-import org.junit.BeforeClass; 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 import org.junit.runners.Suite;
+import org.junit.BeforeClass;
 
 import static org.junit.Assert.*;  
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /*
  * Note that this is an example of how to use ZAP with Selenium tests,
  * not a good example of how to write good Selenium tests!
  */
-//@RunWith(Suite.class)
-//@SuiteClasses({FunctionalTest.class})
-public class FunctionalTest {
 
-	private static WebDriver driver;
-	private String site = "http://localhost:8888/bodgeit/";
-
-	@BeforeClass public static void BrowserOpen(){ 
-		//System.setProperty("webdriver.firefox.driver",  "p:\\Bodgeit\\bodgeit-devsecops\\libruntime\\geckodriver.exe");
-		driver= new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	}
-
-	@AfterClass public static void BrowserClose(){ 
-		driver.quit(); 
-	}
+public class FunctionalTest extends BodgeitTest {
 	
-	@Test
-	public void testSimple() {
-
-	}
-
-	@Test
-	public void instanceOfTest(){
-		assertThat(new ArrayList(), instanceOf(List.class));
-	}
-
-	private void sleep() {
-		try {
-			Thread.sleep(300);
-		} catch (InterruptedException e) {
-			// Ignore
-		}
-		
-	}
-
 	public void checkMenu(String linkText, String page) {
 		sleep();
-		WebElement link = driver.findElement(By.linkText(linkText));
+		WebElement link = BodgeitSuite.driver.findElement(By.linkText(linkText));
 		link.click();
 		sleep();
 
-		assertEquals(site + page, driver.getCurrentUrl());
+		assertEquals(BodgeitSuite.site + page, BodgeitSuite.driver.getCurrentUrl());
 	}
 
-	@Test public void checkMenuHome(){
-		driver.get(site + "home.jsp");
+	@Test 
+	public void checkMenuHome(){
+		BodgeitSuite.driver.get(BodgeitSuite.site + "home.jsp");
 		checkMenu("Home", "home.jsp");
 	}
 
