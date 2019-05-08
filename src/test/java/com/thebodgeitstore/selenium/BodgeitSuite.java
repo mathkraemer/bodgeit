@@ -2,8 +2,6 @@ package com.thebodgeitstore.selenium;
 
 import java.util.concurrent.TimeUnit;
 
-import com.thebodgeitstore.selenium.BodgeitTestBase;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -28,7 +26,7 @@ public class BodgeitSuite {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         System.out.println("Done...");
         driver.get(site);
-        BodgeitTestBase.sleep(15000);
+        try {Thread.sleep(12000);} catch (InterruptedException e) {}
         System.out.println("Webapp loaded...");
     }
 
