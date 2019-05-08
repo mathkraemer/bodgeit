@@ -18,6 +18,7 @@ public class BodgeitTestBase {
 	public static void setup(){
         driver = BodgeitSuite.driver;
 		site = BodgeitSuite.site;
+		System.out.println("BodgeitTestBase set up...");
 	}
 
 	static void sleep(int ms) {

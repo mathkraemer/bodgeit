@@ -29,6 +29,7 @@ public class BodgeitSuite {
         System.out.println("Done...");
         driver.get(site);
         BodgeitTestBase.sleep(10000);
+        System.out.println("Webapp loaded...");
     }
 
 	@AfterClass public static void BrowserClose(){ 
