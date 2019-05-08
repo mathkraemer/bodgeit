@@ -5,7 +5,7 @@ import org.junit.BeforeClass;
 
 import org.openqa.selenium.WebDriver;
 
-public class BodgeitTest {
+public class BodgeitTestBase {
     
     static WebDriver driver;
 	static String site;

@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 @RunWith(Suite.class)
-@SuiteClasses({FunctionalTest.class})
+@SuiteClasses({MenuTests.class})
 public class BodgeitSuite {
 
     public static WebDriver driver;
