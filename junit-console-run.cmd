@@ -1,0 +1,1 @@
+java -Dwebdriver.gecko.driver=runtime/geckodriver.exe -cp libtest\junit-4.12.jar;libtest\hamcrest-core-1.3.jar;build\app\WEB-INF\classes;libtest\selenium-server-standalone-3.141.59.jar;build\test\classes org.junit.runner.JUnitCore com.thebodgeitstore.selenium.BodgeitSuite
