@@ -25,7 +25,7 @@ public class BodgeitSuite {
 		driver= new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         System.out.println("Done...");
-        driver.get(site);
+        //driver.get(site);
         try {Thread.sleep(12000);} catch (InterruptedException e) {}
         System.out.println("Webapp loaded...");
     }
