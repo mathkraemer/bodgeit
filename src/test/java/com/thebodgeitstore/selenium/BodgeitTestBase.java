@@ -1,6 +1,6 @@
 package com.thebodgeitstore.selenium;
 
-import org.junit.AfterClass; 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import org.openqa.selenium.WebDriver;
@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 
 import static org.junit.Assert.*;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class BodgeitTestBase {
     
@@ -18,7 +21,7 @@ public class BodgeitTestBase {
 	public static void setup(){
         driver = BodgeitSuite.driver;
 		site = BodgeitSuite.site;
-		System.out.println("BodgeitTestBase set up...");
+		System.out.println(new Timestamp(new Date().getTime()) + " BodgeitTestBase set up...");
 	}
 
 	static void sleep(int ms) {
