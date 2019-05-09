@@ -19,7 +19,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BodgeitSuite {
 
     public static WebDriver driver;
-	public static String site = "http://localhost:8888/bodgeit/";
+	public static String site = "http://mkraemer-5520:8888/bodgeit/";
 
 	@BeforeClass public static void BrowserOpen(){ 
         //System.setProperty("webdriver.firefox.driver",  "p:\\path\\to\\runtime\\geckodriver.exe");
@@ -34,7 +34,7 @@ public class BodgeitSuite {
     }
 
 	@AfterClass public static void BrowserClose(){
-        System.out.println(new Timestamp(new Date().getTime()) + " Closing down drviver ..."); 
+        System.out.println(new Timestamp(new Date().getTime()) + " Closing down driver ..."); 
         driver.quit();
         System.out.println(new Timestamp(new Date().getTime()) + " Released driver ...");
 	}
