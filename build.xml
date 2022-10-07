@@ -82,7 +82,7 @@
 	<target name="test" depends="war, test.compile">
 	    <mkdir dir="build/allure-results" />
         <!-- Run the JUnit tests -->
-        <junit printsummary="yes">
+        <junit printsummary="yes" showoutput="yes">
         	<classpath refid="java.test.classpath"/>
 			<classpath location="build/test/classes"/>
 			<jvmarg value="-Dwebdriver.gecko.driver=${basedir}/runtime/geckodriver.exe"/>
