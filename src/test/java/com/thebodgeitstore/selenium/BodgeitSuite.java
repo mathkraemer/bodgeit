@@ -31,7 +31,7 @@ public class BodgeitSuite {
         System.out.println(new Timestamp(new Date().getTime()) + " Timeouts set...");
         driver.get(site);
         System.out.println(new Timestamp(new Date().getTime()) + " Webapp loaded...");
-        try {Thread.sleep(8000);} catch (InterruptedException e) {}
+        try {Thread.sleep(12000);} catch (InterruptedException e) {}
     }
 
 	@AfterClass public static void BrowserClose(){
